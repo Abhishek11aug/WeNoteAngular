@@ -33,6 +33,29 @@ export class NotesComponent implements OnInit {
 
   }
 
+  async addForm(data:any){
+    console.log(data);
+    try {
+      const response = await fetch(`https://we-note-backend.vercel.app/notes/addnote`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Token": this.token
+        },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) {
+        const res = await response.json;
+        // alert(res)
+        console.log(res)
+      }
+        
+    } catch (error) {
+      alert("Something went Wrong. Pls. Try Again!!!")
+    }
+    this.fetchingNotes();
+  }
+
   getId(element:any){
     this.formVisibility = !this.formVisibility;
     this.selectedNote = element;

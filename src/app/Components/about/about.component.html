@@ -1,0 +1,11 @@
+<div class="mt-4">
+    <div class="container" *ngFor="let feature of features; let i = index">
+        <div class="card">
+            <div class="card-header text-left" (click)="toggleRoll(i)">{{feature.heading}}</div>
+            <div *ngIf="rolled[i]">
+                <div class="card-body fs-6" *ngFor="let line of feature.data">{{line}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+    

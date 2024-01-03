@@ -1,11 +1,33 @@
-<div class="row w-75 m-auto border border-dark my-4 bgg">
-    <div class="col-md-4 my-4" *ngFor="let note of Notes">
-        <div class="card mb-4" >
+<form class="w-50 m-auto border border-primary rounded p-4 mt-2" #AddNoteForm="ngForm" (ngSubmit)="addForm(AddNoteForm.value)">
+    <h1 class="fs-2 text-dark text-center"> Add New Notes </h1>
+    <div class="form-group mt-2">
+        <label for="title">Title:</label>
+        <input id="title" ngModel class="form-control" type="text" placeholder="Enter Title" name="title">
+    </div>
+    <div class="form-group mt-2">
+        <label for="description">Description:</label>
+        <input id="description" ngModel class="form-control" type="text" placeholder="Enter Description" name="description">
+    </div>
+    <div class="form-group mt-2">
+        <label for="tag">Tag:</label>
+        <input id="tag" ngModel class="form-control" type="text" placeholder="Enter Tag" name="tag">
+    </div>
+    <div class=" w-75 text-center m-auto p-2 text-center">
+        <button class="btn btn-success mx-2" type="submit">Add</button>
+        <button class="btn btn-danger mx-2" type="reset" >Reset</button>
+    </div>
+</form>
+
+<div class="row content mx-2 bgg">
+    <div class="col-md-3 mt-4 mb-2" *ngFor="let note of Notes">
+        <div class="card" >
             <div class="card-body">
                 <h5 class="card-title">Title: {{note.title}}</h5>
                 <p class="card-text">Description: {{note.description}}</p>
-                <p class="card-text">Tag: {{note.tag}}</p>
             </div>
+            <span class="position-absolute top-0 start-50 translate-middle badge rounded-pill bg-primary text-dark">
+                {{note.tag}}
+              </span>
             <span class="w-75 m-auto text-center">
                 <button class="btn btn-success m-2" (click)="getId(note)">Update</button>                
                 <button class="btn btn-danger  m-2" (click)="deleteForm(note._id)">Delete</button>
@@ -14,7 +36,8 @@
     </div>
 </div>
 
-<form class="w-50 m-auto border border-primary rounded p-4" #LoginForm="ngForm" (ngSubmit)="updateForm(LoginForm.value)" *ngIf="formVisibility">
+<form class="w-50 m-auto border border-primary rounded p-4 my-0" #UpdateForm="ngForm" (ngSubmit)="updateForm(UpdateForm.value)" *ngIf="formVisibility">
+    <h1 class="fs-2 text-dark text-center"> Update Current Notes </h1>
     <div class="form-group mt-2">
         <label for="title">Title:</label>
         <input id="title" class="form-control" type="text" [(ngModel)]="selectedNote.title" name="title">
@@ -27,7 +50,7 @@
         <label for="tag">Tag:</label>
         <input id="tag" class="form-control" type="text" [(ngModel)]="selectedNote.tag" name="tag">
     </div>
-    <div class=" w-75 text-center m-4 p-2 ">
+    <div class=" w-75 text-center p-2 mx-auto ">
         <button class="btn btn-success mx-2" type="submit">Save</button>
         <button class="btn btn-danger mx-2" type="button" (click)="closeForm()">Close</button>
     </div>
