@@ -28,7 +28,6 @@ export class loginFormComponent { // Note: Corrected the class name to follow An
       if (res.success) {
         localStorage.setItem("Token", res.msg);
         alert("Login Successfully");
-        // this.router.navigate(['/Notes']);
         window.location.replace('/Notes');
       } else {
         alert("Wrong Credentials");
@@ -51,7 +50,7 @@ export class loginFormComponent { // Note: Corrected the class name to follow An
       if (res.success) {
         localStorage.setItem("Token", res.msg);
         alert("Registration Successfully");
-        this.router.navigate(['/Notes']);
+        window.location.replace('/Notes');
       } else {
         alert("Wrong Credentials");
       }
